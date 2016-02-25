@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title></title>
+        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <style type="text/css">
+
+        *{
+            font-family: 'Zawgyi-One'!important;   
+        }
+
+        </style>
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+        <script src="cordova.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body ng-app="aka">
+
+    <script id="popup.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar-calm">
+          <h1 class="title" ng-bind-html="modaltitle"></h1>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="card">
+            <div class="item item-text-warp" ng-bind-html="modaldescription">
+              
+            </div>
+          </div>
+        <button type="submit" class="button icon-center ion-arrow-left-b button-assertive button-full" ng-click="closemodal()">
+               Back
+              </button>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+
+    <ion-pane ng-controller="HomeController">
+      <ion-header-bar class="bar-calm">
+        <h1 class="title">ေတာင္သူဦးႀကီး</h1>
+        <button class="button button-clear icon-right ion-person" ng-click="aboutus()"></button>
+      </ion-header-bar>
+      <ion-content>
+
+        <form name="calForm" ng-submit="calfields();" novalidate>
+          <div class="list">
+             <div class="item item-divider">
+              လယ္ဧက တြက္ရန္
+            </div>
+            <label class="item item-input">
+              <span class="input-label">အေရွ႕</span>
+              <input type="number" name="east" ng-model="fields.east"  required valid-float="fields.east" ng-focus="true">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">အေနာက္</span>
+              <input type="number" name="west" ng-model="fields.west" required valid-float="fields.west">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">ေတာင္</span>
+              <input type="number" name="south" ng-model="fields.south" required valid-float="fields.south">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">ေျမာက္</span>
+              <input type="number" name="north" ng-model="fields.north" required valid-float="fields.north">
+            </label>
+          </div>
+
+          <div class="button-bar padding">
+          <a class="button button-outline button-assertive" ng-click="clearcal()">
+            ရွင္းမည္
+          </a>
+          <button class="button button-positive" ng-disabled="calForm.east.$invalid || calForm.west.$invalid|| calForm.south.$invalid|| calForm.north.$invalid">
+            တြက္မည္
+          </button>
+          </div>
+      </form>
+
+      <form name="priceForm" ng-submit="calprices();" novalidate>
+          <div class="list">
+             <div class="item item-divider">
+              လယ္ဧက ေစ်းႏူန္း တြက္ရန္
+            </div>
+            <label class="item item-input">
+              <span class="input-label">ဧက</span>
+              <input type="number" name="totalaka" ng-model="fields.totalaka"  required valid-float="fields.totalaka">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">ေစ်းႏူန္း</span>
+              <input type="number" name="price" ng-model="fields.price" required valid-float="fields.price">
+            </label>
+          </div>
+
+          <div class="button-bar padding">
+          <button class="button button-block button-positive" ng-disabled="priceForm.totalaka.$invalid || priceForm.price.$invalid">
+            တြက္မည္
+          </button>
+          </div>
+      </form>
+      </ion-content>
+      <ion-footer-bar class="bar-calm">
+        <h1 class="title" style="font-size: 12px;text-align: center"> Copyright &copy 2016 <a href="http://www.proxsoftwaresolution.com" target="_blank" style="text-decoration: none">Pro-X Software Solution </a></h1>
+      </ion-footer-bar>
+
+    </ion-pane>
+  </body>
+</html>
